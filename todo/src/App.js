@@ -3,14 +3,11 @@ import './App.css';
 import Todos from './components/Todos'
 
 class App extends Component {
-  state = {
-    todos: []
-  }
 
   render() {
     return (
       <div className="App">
-        <Todos todos={this.state.todos}/>
+        <Todos />
       </div>
     );
   }

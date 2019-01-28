@@ -5,10 +5,15 @@ const Todos = (props) => {
     return (
         <div>
             {props.todos.map(todo => 
-                <div>{todo.value}</div>
+                <div key={todo.value}>{todo.value}</div>
             )}
         </div>
     )
 }
 
-export default connect(null, {})(Todos)
+const mapStateToProps = (state) => {
+    return {
+        todos: state.todos
+    }
+}
+export default connect(mapStateToProps, {})(Todos)
