@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
+import Todos from './components/Todos'
 
 class App extends Component {
+  state = {
+    todos: []
+  }
+
   render() {
     return (
       <div className="App">
-        Todo App
+        <Todos todos={this.state.todos}/>
       </div>
     );
   }
