@@ -1,3 +1,5 @@
+import { ADD_TODO } from '../actions';
+
 const initialState = {
     todos: [
         {
@@ -12,8 +14,9 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-    switch (action) {
-        case "":
+    switch (action.type) {
+        case ADD_TODO:
+            console.log("+")
             return {
                 ...state,
             }
