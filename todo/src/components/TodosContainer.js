@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const Todos = (props) => {
+const TodosContainer = (props) => {
     return (
         <div>
             {props.todos.map(todo => 
                 <div key={todo.value}>{todo.value}</div>
             )}
+
+            <form>
+                <input type="text" placeholder="...new todo"></input>
+                <button type="submit">Add</button>
+            </form>
         </div>
     )
 }
@@ -16,4 +21,4 @@ const mapStateToProps = (state) => {
         todos: state.todos
     }
 }
-export default connect(mapStateToProps, {})(Todos)
+export default connect(mapStateToProps, {})(TodosContainer)
