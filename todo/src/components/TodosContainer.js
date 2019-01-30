@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo, toggleTodoCompleted } from '../actions'
+import { addTodo, toggleTodoCompleted, deleteTodo } from '../actions'
 
 class TodosContainer extends React.Component {
 
@@ -14,13 +14,18 @@ class TodosContainer extends React.Component {
 
     handleAddTodo = (e) => {
         e.preventDefault();
-        this.props.addTodo(this.state.newTodo)
-        this.setState({newTodo: ''})
+        this.props.addTodo(this.state.newTodo);
+        this.setState({newTodo: ''});
     }
 
     handleToggle = (e, index) => {
         e.preventDefault();
-        this.props.toggleTodoCompleted(index)
+        this.props.toggleTodoCompleted(index);
+    }
+
+    handleDelete = (e, index) => {
+        e.preventDefault();
+        this.props.deleteTodo(index);
     }
 
     render () {
@@ -29,12 +34,14 @@ class TodosContainer extends React.Component {
                 <h3>Todo List</h3>
                 <ul>
                 {this.props.todos.map((todo, index) => 
-                    <li 
-                        key={index} 
-                        onClick={e => this.handleToggle(e, index)}
-                        className={todo.completed ? "completed" : null}
-                    >
-                        {todo.value}
+                    <li key={index}>
+                        <span 
+                            onClick={e => this.handleToggle(e, index)} 
+                            className={todo.completed ? "completed" : null}
+                        >
+                            {todo.value}
+                        </span>
+                        <span onClick={e => this.handleDelete(e, index)}>X</span>
                     </li>
                 )}
                 </ul>
@@ -59,4 +66,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {addTodo, toggleTodoCompleted})(TodosContainer)
+export default connect(mapStateToProps, {addTodo, toggleTodoCompleted, deleteTodo })(TodosContainer)
