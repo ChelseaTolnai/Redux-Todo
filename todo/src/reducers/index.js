@@ -16,7 +16,8 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TODO:
-            console.log("+")
+        console.log("+")
+            // console.log(state.todos.push(action.payload))
             return {
                 ...state,
             }

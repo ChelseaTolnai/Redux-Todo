@@ -2,26 +2,43 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions'
 
-const TodosContainer = (props) => {
+class TodosContainer extends React.Component {
 
-    const handleAddTodo = (e) => {
-        e.preventDefault();
-        props.addTodo()
+    state = {
+        newTodo: ''
     }
-    return (
-        <div>
-            <ul>
-            {props.todos.map(todo => 
-                <li key={todo.value}>{todo.value}</li>
-            )}
-            </ul>
 
-            <form>
-                <input type="text" placeholder="...new todo"></input>
-                <button type="submit" onClick={ e => handleAddTodo(e)}>Add</button>
-            </form>
-        </div>
-    )
+    handleInput = (e) => {
+        this.setState({newTodo: e.target.value})
+    }
+
+    handleAddTodo = (e) => {
+        e.preventDefault();
+        this.props.addTodo(this.state.newTodo)
+    }
+
+    render () {
+        return (
+            <div>
+                <h3>Todo List</h3>
+                <ul>
+                {this.props.todos.map(todo => 
+                    <li key={todo.value}>{todo.value}</li>
+                )}
+                </ul>
+
+                <form onSubmit={this.handleAddTodo}> 
+                    <input 
+                        type="text" 
+                        placeholder="...new todo" 
+                        value={this.state.newTodo}
+                        onChange={this.handleInput}
+                    />
+                    <button type="submit" onClick={this.handleAddTodo}>Add</button>
+                </form>
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = (state) => {
