@@ -15,6 +15,7 @@ class TodosContainer extends React.Component {
     handleAddTodo = (e) => {
         e.preventDefault();
         this.props.addTodo(this.state.newTodo)
+        this.setState({newTodo: ''})
     }
 
     render () {
@@ -22,8 +23,8 @@ class TodosContainer extends React.Component {
             <div>
                 <h3>Todo List</h3>
                 <ul>
-                {this.props.todos.map(todo => 
-                    <li key={todo.value}>{todo.value}</li>
+                {this.props.todos.map((todo, index) => 
+                    <li key={index}>{todo.value}</li>
                 )}
                 </ul>
 
