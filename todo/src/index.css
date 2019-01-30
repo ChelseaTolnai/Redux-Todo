@@ -1,0 +1,25 @@
+body {
+  margin: 0 5%;;
+  padding: 0;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2%;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 30%;
+}
+
+span {
+  cursor: pointer;
+}
