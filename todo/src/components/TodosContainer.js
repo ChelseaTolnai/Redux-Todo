@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../actions'
+import { addTodo, toggleTodoCompleted } from '../actions'
 
 class TodosContainer extends React.Component {
 
@@ -18,13 +18,24 @@ class TodosContainer extends React.Component {
         this.setState({newTodo: ''})
     }
 
+    handleToggle = (e, index) => {
+        e.preventDefault();
+        this.props.toggleTodoCompleted(index)
+    }
+
     render () {
         return (
             <div>
                 <h3>Todo List</h3>
                 <ul>
                 {this.props.todos.map((todo, index) => 
-                    <li key={index}>{todo.value}</li>
+                    <li 
+                        key={index} 
+                        onClick={e => this.handleToggle(e, index)}
+                        className={todo.completed ? "completed" : null}
+                    >
+                        {todo.value}
+                    </li>
                 )}
                 </ul>
 
@@ -47,4 +58,5 @@ const mapStateToProps = (state) => {
         todos: state.todos
     }
 }
-export default connect(mapStateToProps, {addTodo})(TodosContainer)
+
+export default connect(mapStateToProps, {addTodo, toggleTodoCompleted})(TodosContainer)
